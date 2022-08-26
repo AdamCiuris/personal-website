@@ -9,8 +9,9 @@ If you have docker installed just use
 ``docker compose up`` AND create a file called .env if it doesn't already exits
 add the lines:
 
-port=
-ipinfoToken=
+port=3456
+
+ipinfoToken=*enter token here*
 
 without a valid IpInfo.io token an error will be caught and logged in console. It should still run.
 
