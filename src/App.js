@@ -6,8 +6,95 @@ import gitico from "./images/sidebar/github.png"
 import liico from "./images/sidebar/linkedin.png"
 import twitterico from "./images/sidebar/twitter.png"
 
+import {useState,useEffect} from 'react'
+import axios from 'axios'
 
 function App() {
+
+
+  const [ip,setIP] = useState('');
+    
+  //creating function to load ip address from the API
+  const getData = async() => {
+    // try {
+    //   const res = await fetch('localhost:3306', {
+    //     method: 'post',
+    //     body: {
+    //       idtest: 2,
+    //       testcol: "pepe"
+
+    //     }
+    //   });
+    //   console.log('Completed!', res);
+    // } catch(e) {
+    //   console.error(e)
+    // }
+        try {
+          const res2 = await fetch("https://ipinfo.io/json?token" + process.env.ipinfoToken, {
+            method: 'get',
+            mode: "cors",
+            headers: {
+              "Content-Type": "application/json"
+            },
+    
+          }).then(
+            (response) => response.json()
+            ).then( (jsonResponse) => {
+            
+            
+          const res = axios.post('http://localhost:8080/api/tutorials',{
+            headers: {
+              "Content-Type": "application/json"
+            },
+    
+            mode: 'no-cors',
+            
+            "ip": jsonResponse.ip,
+            "hostname": jsonResponse.hostname,
+            "city": jsonResponse.city,
+            "region": jsonResponse.region,
+            "country": jsonResponse.country,
+            "loc": jsonResponse.loc,
+            "org": jsonResponse.org,
+            "postal": jsonResponse.postal,
+            "timezone": jsonResponse.timezone
+            // "ip": "jsonResponse.ip",
+            // "hostname": "jsonResponse.hostname",
+            // "city": "jsonResponse.city",
+            // "region": "jsonResponse.region",
+            // "country": "jsonResponse.country",
+            // "loc": "jsonResponse.loc",
+            // "org": "jsonResponse.org",
+            // "postal": "jsonResponse.postal",
+            // "timezone": "jsonResponse.timezone"
+
+          })
+          }, [])
+          
+        
+        } catch(e) {
+      console.error(e)
+    }
+  //   try {
+  //     const headers = new Headers()
+  //     headers.append("Content-Type", "application/json")
+  //     fetch("https://ipinfo.io/json?token0d42b783c20d94").then(
+  //       (response) => console.log(response))
+  //   } catch(e) {
+  //     console.log(e)
+
+  // } 
+  }
+
+  useEffect(() => { // imperative code
+    getData()
+  }, [])
+  
+  useEffect(()=>{
+      //passing getData method to the lifecycle method
+      getData()
+  },[])
+  
   return (
     <div className="App">
       <div className="profile-pic-wrapper">
