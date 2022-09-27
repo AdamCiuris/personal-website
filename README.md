@@ -4,7 +4,7 @@ Routed through Cloudflare and hosted on my private linux server. Nginx and react
 Http and Https.
 
 <h1>how to run</h1>
-If you have docker installed just use
+If you have docker installed just got to frontend directory and use
 
 ``docker compose up`` AND create a file called .env if it doesn't already exits
 add the lines:
