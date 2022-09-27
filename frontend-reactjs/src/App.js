@@ -78,7 +78,7 @@ function App() {
   //   try {
   //     const headers = new Headers()
   //     headers.append("Content-Type", "application/json")
-  //     fetch("https://ipinfo.io/json?token0d42b783c20d94").then(
+  //     fetch("https://ipinfo.io/json?").then(
   //       (response) => console.log(response))
   //   } catch(e) {
   //     console.log(e)
